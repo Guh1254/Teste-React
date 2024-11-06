@@ -16,7 +16,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100vh;
+    overflow-y: auto; /* Adiciona rolagem vertical quando o conteúdo exceder a altura da tela */
 }
 
 header {
@@ -31,11 +31,26 @@ header h1 {
     font-size: 2rem;
 }
 
+/* Layout padrão para desktop */
 .actions-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 cards por linha */
+    grid-template-columns: repeat(3, 1fr); /* 3 cards por linha no desktop */
     gap: 20px;
     padding: 20px;
+}
+
+/* Ajuste para tablets e telas médias */
+@media (max-width: 1024px) {
+    .actions-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards por linha em telas médias */
+    }
+}
+
+/* Ajuste para dispositivos móveis */
+@media (max-width: 767px) {
+    .actions-grid {
+        grid-template-columns: 1fr; /* 1 card por linha em telas pequenas */
+    }
 }
 
 .card {

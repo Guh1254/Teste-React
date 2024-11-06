@@ -56,12 +56,24 @@ select {
     border: 1px solid #acbcb4;
     font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
+    background-color: #fff; /* Alterado para branco */
+    color: #1a616a; /* Cor do texto ajustada */
+}
+
+select:focus, input[type="text"]:focus, input[type="date"]:focus {
+    border-color: #32bacc; /* Cor de foco consistente */
+    outline: none;
+    box-shadow: 0 0 5px rgba(50, 186, 204, 0.5); /* Sombra suave ao focar */
 }
 
 #product-list .product-item {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    background-color: #fff; /* Fundo claro para os itens */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #acbcb4;
 }
 
 #product-list .remove-btn {
