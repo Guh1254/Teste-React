@@ -11,7 +11,6 @@ function EditarConta() {
     senha: '12345678',
   });
 
-  const [loading, setLoading] = useState(false); // Controle de estado para carregar
   const [formValid, setFormValid] = useState(true); // Estado para controle de validação
 
   // Função para lidar com as mudanças nos campos de entrada
@@ -29,29 +28,22 @@ function EditarConta() {
   };
 
   // Função para lidar com o envio do formulário
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!validateForm()) {
       // Se o formulário não for válido, não enviamos
       return;
     }
 
-    setLoading(true); // Inicia o carregamento
+    // Exibir notificação de sucesso
+    Swal.fire({
+      title: 'Sucesso!',
+      text: 'As alterações foram salvas com sucesso.',
+      icon: 'success',
+      confirmButtonText: 'OK',
+    });
 
-    // Simulação de requisição para salvar as alterações
-    setTimeout(() => {
-      console.log('Alterações salvas:', usuario);
-
-      // Exibir notificação de sucesso
-      Swal.fire({
-        title: 'Sucesso!',
-        text: 'As alterações foram salvas com sucesso.',
-        icon: 'success',
-        confirmButtonText: 'OK',
-      });
-
-      setLoading(false); // Finaliza o carregamento
-    }, 2000); // Simulação de 2 segundos para a requisição (substitua pela lógica real)
+    console.log('Alterações salvas:', usuario);
   };
 
   return (
@@ -95,9 +87,9 @@ function EditarConta() {
           <button
             type="submit"
             className="btn-submit"
-            disabled={loading || !formValid} // Desabilitar o botão de envio enquanto o formulário está sendo salvo ou inválido
+            disabled={!formValid} // Desabilitar o botão de envio enquanto o formulário está inválido
           >
-            {loading ? 'Salvando...' : 'Salvar Alterações'}
+            Salvar Alterações
           </button>
         </form>
       </div>

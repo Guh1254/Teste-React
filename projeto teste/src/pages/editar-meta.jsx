@@ -1,39 +1,56 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importando o hook para navegação
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import '../styles/editar-meta.css';
 
 function EditarMeta() {
-  // Estado inicial com valores preenchidos
   const [meta, setMeta] = useState({
     nome: 'Meta de Vendas - Janeiro',
     descricao: 'Aumentar as vendas em 20% durante o mês de Janeiro.',
     prazo: '2024-01-31',
   });
 
-  // Inicializando o hook useNavigate para redirecionamento
   const navigate = useNavigate();
 
-  // Função para lidar com as mudanças nos campos de entrada
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setMeta({ ...meta, [name]: value });
   };
 
-  // Função para lidar com a submissão do formulário
   const handleSubmit = (e) => {
     e.preventDefault();
     // Aqui você pode adicionar a lógica para salvar as alterações da meta
     console.log('Alterações salvas:', meta);
-    // Redirecionar para a página de listagem de metas (ou qualquer outra página)
-    navigate('/metas'); // Substitua '/metas' pela rota de destino desejada
+    
+    // Exibindo o alerta de sucesso com SweetAlert
+    Swal.fire({
+      title: 'Alterações Salvas!',
+      text: 'As alterações foram salvas com sucesso.',
+      icon: 'success',
+      confirmButtonColor: '#32bacc',
+      confirmButtonText: 'OK'
+    }).then(() => {
+      // Redirecionar para a página de listagem de metas (ou qualquer outra página)
+      navigate('/visualizar-metas'); // Substitua '/visualizar-metas' pela rota de destino desejada
+    });
   };
 
-  // Função para encerrar a meta (pode ser customizada conforme necessário)
   const handleEncerrarMeta = () => {
-    // Lógica para encerrar a meta (pode ser uma chamada API ou outro comportamento)
-    console.log('Meta encerrada');
-    // Redirecionar para a página de listagem de metas após encerrar
-    navigate('/metas'); // Substitua '/metas' pela rota desejada
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: 'Você realmente deseja encerrar esta meta?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#32bacc',
+      cancelButtonColor: '#acbcb4',
+      confirmButtonText: 'Sim, encerrar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Encerrada!', 'A meta foi encerrada com sucesso.', 'success');
+        navigate('/visualizar-metas');
+      }
+    });
   };
 
   return (

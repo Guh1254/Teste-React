@@ -22,6 +22,14 @@ function EditarProduto() {
     e.preventDefault();
     // Aqui você pode adicionar a lógica para atualizar o produto no backend
     console.log('Produto atualizado:', produto);
+
+    // Exibir notificação de sucesso
+    Swal.fire({
+      title: 'Produto Atualizado!',
+      text: 'As informações do produto foram atualizadas com sucesso.',
+      icon: 'success',
+      confirmButtonText: 'OK',
+    });
   };
 
   // Função para notificar a falta de produto
@@ -34,10 +42,18 @@ function EditarProduto() {
     });
   };
 
-  // Função para excluir o produto (pode ser uma chamada API ou outro comportamento)
+  // Função para excluir o produto
   const handleDelete = () => {
     // Lógica para excluir o produto
     console.log('Produto excluído');
+
+    // Exibir notificação de sucesso
+    Swal.fire({
+      title: 'Produto Excluído!',
+      text: 'O produto foi excluído com sucesso.',
+      icon: 'success',
+      confirmButtonText: 'OK',
+    });
   };
 
   return (

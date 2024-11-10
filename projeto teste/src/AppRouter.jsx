@@ -7,7 +7,7 @@ import CadastroInstituicao from './pages/cadastroInstituicao';
 import RecuperarSenha from './pages/recuperar-Senha'; 
 import CadastroAdm from './pages/cadastro-adm';
 import AbrirVendas from './pages/abrir-vendas';
-import AdicionarProduto from './pages/adcionar-produto';
+import AdicionarProduto from './pages/adicionar-produto';
 import CadastrarComunidade from './pages/cadastrar-comunidade';
 import CadastrarVendedor from './pages/cadastrar-vendedor';
 import CriarMeta from './pages/criar-metas';
@@ -40,7 +40,7 @@ function AppRouter() {
         <Route path="/recuperar-senha" element={<RecuperarSenha />} />
         <Route path="/cadastro-adm" element={<CadastroAdm />} />
         <Route path="/abrir-vendas" element={<AbrirVendas />} />
-        <Route path="/adcionar-produto" element={<AdicionarProduto/>} />
+        <Route path="/adicionar-produto" element={<AdicionarProduto/>} />
         <Route path="/cadastrar-comunidade" element={<CadastrarComunidade/>} />
         <Route path="/cadastrar-vendedor" element={<CadastrarVendedor/>} />
         <Route path="/criar-metas" element={<CriarMeta/>} />

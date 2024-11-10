@@ -11,7 +11,6 @@ function EditarComunidade() {
     responsavel: 'João Silva',
   });
 
-  const [loading, setLoading] = useState(false); // Estado para controle de carregamento
   const navigate = useNavigate(); // Hook de navegação
 
   // Função para lidar com mudanças nos campos de entrada
@@ -21,28 +20,21 @@ function EditarComunidade() {
   };
 
   // Função para lidar com a submissão do formulário
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true); // Iniciar o carregamento
 
-    // Aqui você pode adicionar a lógica para atualizar a comunidade, como uma chamada para API
-    // Vamos simular um delay de 2 segundos para ilustrar o processo de envio
-    setTimeout(() => {
-      console.log('Comunidade atualizada:', comunidade);
+    // Exibir uma notificação de sucesso
+    Swal.fire({
+      title: 'Comunidade Atualizada!',
+      text: 'As informações da comunidade foram atualizadas com sucesso.',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    }).then(() => {
+      // Redirecionar após o sucesso
+      navigate('/visualizar-lugares'); // Substitua '/visualizar-lugares' pela página de destino desejada
+    });
 
-      // Exibir uma notificação de sucesso
-      Swal.fire({
-        title: 'Comunidade Atualizada!',
-        text: 'As informações da comunidade foram atualizadas com sucesso.',
-        icon: 'success',
-        confirmButtonText: 'OK'
-      }).then(() => {
-        // Redirecionar após o sucesso
-        navigate('/comunidades'); // Substitua '/comunidades' pela página de listagem de comunidades ou qualquer outra
-      });
-
-      setLoading(false); // Finalizar o carregamento
-    }, 2000); // Simulando um atraso de 2 segundos (substitua com a lógica real de requisição)
+    console.log('Comunidade atualizada:', comunidade);
   };
 
   // Função para excluir a comunidade com confirmação
@@ -56,7 +48,7 @@ function EditarComunidade() {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        // Lógica para excluir a comunidade, por exemplo, uma chamada para uma API de exclusão
+        // Lógica para excluir a comunidade
         console.log('Comunidade excluída');
 
         // Exibir uma notificação de sucesso
@@ -67,7 +59,7 @@ function EditarComunidade() {
           confirmButtonText: 'OK'
         }).then(() => {
           // Redirecionar após a exclusão
-          navigate('/comunidades'); // Substitua '/comunidades' pela página de listagem de comunidades ou qualquer outra
+          navigate('/visualizar-lugares'); // Substitua '/visualizar-lugares' pela página de destino desejada
         });
       }
     });
@@ -111,8 +103,8 @@ function EditarComunidade() {
             required
           />
 
-          <button type="submit" className="btn-submit" disabled={loading}>
-            {loading ? 'Atualizando...' : 'Atualizar Comunidade'}
+          <button type="submit" className="btn-submit">
+            Atualizar Comunidade
           </button>
         </form>
 
@@ -120,9 +112,8 @@ function EditarComunidade() {
           type="button"
           className="btn-delete"
           onClick={handleDelete}
-          disabled={loading} // Desabilitar o botão enquanto a atualização está sendo realizada
         >
-          {loading ? 'Excluindo...' : 'Excluir Comunidade'}
+          Excluir Comunidade
         </button>
       </div>
 

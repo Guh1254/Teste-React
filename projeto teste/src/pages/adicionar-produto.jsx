@@ -33,7 +33,7 @@ function AdicionarProduto() {
       confirmButtonText: 'OK'
     }).then(() => {
       // Redirecionar para a página de lista de produtos (ou qualquer página que você desejar)
-      navigate('/estoque'); // Substitua '/estoque' pelo caminho correto onde a lista de produtos é exibida
+      navigate('/visualizar-estoque'); // Substitua '/estoque' pelo caminho correto onde a lista de produtos é exibida
     });
 
     // Resetar o formulário após o envio (opcional)

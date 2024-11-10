@@ -1,6 +1,8 @@
 // src/pages/DetalhesMeta.jsx
 import React from 'react';
-import '../styles/meta-detalhes.css';  // Certifique-se de ter o arquivo CSS correspondente
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Importa o SweetAlert2
+import '../styles/meta-detalhes.css';
 
 function DetalhesMeta() {
   const meta = {
@@ -12,14 +14,25 @@ function DetalhesMeta() {
     status: "Em andamento"
   };
 
-  // Função para lidar com o encerramento da meta
+  // Função para lidar com o encerramento da meta usando SweetAlert2
   const handleEncerrarMeta = () => {
-    alert("Meta encerrada!");
-  };
-
-  // Função para redirecionar para a página de edição da meta
-  const handleEditarMeta = () => {
-    window.location.href = 'editar-meta.html';
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: "Você quer realmente encerrar essa meta?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, encerrar meta!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Encerrada!',
+          'A meta foi encerrada com sucesso.',
+          'success'
+        );
+      }
+    });
   };
 
   return (
@@ -37,7 +50,7 @@ function DetalhesMeta() {
         <p><strong>Status:</strong> {meta.status}</p>
 
         <div className="actions">
-          <button className="btn-edit" onClick={handleEditarMeta}>Editar Meta</button>
+          <Link to="/editar-meta" className="btn-edit">Editar Meta</Link>
           <button className="btn-close" onClick={handleEncerrarMeta}>Encerrar Meta</button>
         </div>
       </div>
